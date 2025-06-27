@@ -5,3 +5,4 @@
 @theme {
     --font-default : "Montserrat", sans-serif;
 }
+@custom-variant dark (&:where(.dark, .dark *));

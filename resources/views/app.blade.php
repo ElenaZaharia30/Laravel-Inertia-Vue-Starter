@@ -12,7 +12,7 @@
     @routes
 </head>
 
-<body class="font-default">
+<body class="font-default bg-slate-100 text-slate-900 dark:bg-slate-700 dark:text-white">
     @inertia
 </body>
 
