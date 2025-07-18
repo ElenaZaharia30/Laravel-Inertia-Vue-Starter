@@ -1,11 +1,11 @@
 <script setup>
-import Container from "../../Componenets/Container.vue";
-import Title from "../../Componenets/Title.vue";
-import TextLink from "../../Componenets/TextLink.vue";
-import InputField from "../../Componenets/InputField.vue";
-import PrimaryBtn from "../../Componenets/PrimaryBtn.vue";
+import Container from "../../Components/Container.vue";
+import Title from "../../Components/Title.vue";
+import TextLink from "../../Components/TextLink.vue";
+import InputField from "../../Components/InputField.vue";
+import PrimaryBtn from "../../Components/PrimaryBtn.vue";
 import {useForm} from "@inertiajs/vue3";
-import ErrorMessages from "../../Componenets/ErrorMessages.vue";
+import ErrorMessages from "../../Components/ErrorMessages.vue";
 
 const form = useForm({
     name: "",

@@ -1,6 +1,6 @@
 <script setup>
 import {switchTheme} from "../theme.js";
-import NavLink from "../Componenets/NavLink.vue";
+import NavLink from "../Components/NavLink.vue";
 import {router, usePage} from "@inertiajs/vue3";
 import {computed, ref} from "vue";
 
@@ -39,7 +39,12 @@ const show = ref(false);
                         <div v-show="show"
                             class="absolute z-50 top-14 right-0 text-center bg-slate-800 text-white rounded-lg border-slate-100 border overflow-hidden w-40">
                             <Link
-                                :href="route('home')"
+                                :href="route('profile.edit')"
+                                class="cursor-pointer block w-full px-6 py-3 hover:bg-slate-700">
+                                Profile
+                            </Link>
+                            <Link
+                                :href="route('dashboard')"
                                 class="cursor-pointer block w-full px-6 py-3 hover:bg-slate-700">
                                 Dashboard
                             </Link>
@@ -65,7 +70,7 @@ const show = ref(false);
         </nav>
     </header>
 
-    <main class="p-6 max-w-screen-lg mx-auto mt-12">
+    <main class="p-6 max-w-screen-lg mx-auto mt-12 min-h-screen">
         <slot />
     </main>
 </template>

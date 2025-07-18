@@ -39,7 +39,7 @@ const fieldId = props.label?.toLowerCase().replace(/\s+/g, '-') || 'field';
                 :type="type"
                 :placeholder="placeholder"
                 v-model="model"
-                class="block w-full rounded-md pr-3 pl-9 text-sm dark:text-slate-900 border-slate-300 outline-0 focus:ring-1 focus:ring-inset focus:ring-indigo-400 focus:border-indigo-400 placeholder:text-slate-400"
+                class="mb-3 block w-full rounded-md pr-3 pl-9 text-sm dark:text-slate-900 border-slate-300 outline-0 focus:ring-1 focus:ring-inset focus:ring-indigo-400 focus:border-indigo-400 placeholder:text-slate-400"
             />
         </div>
     </div>
