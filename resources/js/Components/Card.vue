@@ -10,8 +10,17 @@ const params = route().params;
 const selectUser = (id) => {
     router.get(route('home'), {
         user_id: id,
-        search: params.search
+        search: params.search,
+        tag: params.tag
     })
+}
+
+const selectTag = (tag) => {
+    router.get(route('home'), {
+        user_id: params.user_id,
+        search: params.search,
+        tag: tag
+    });
 }
 </script>
 
@@ -42,7 +51,9 @@ const selectUser = (id) => {
         </div>
         <div v-if="listing.tags" class="flex items-center gap-3 p-4 pt-0">
             <div v-for="tag in listing.tags.split(',')" :key="tag">
-                <button class="bg-slate-500 text-white px-2 py-px
+                <button
+                    @click="selectTag(tag)"
+                    class="bg-slate-500 text-white px-2 py-px
                 rounded-full cursor-pointer hover:bg-slate-700 dark:hover:bg-slate-900">
                     {{tag}}
                 </button>
