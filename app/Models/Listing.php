@@ -26,12 +26,18 @@ class Listing extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeFilter($query, array $filters) {
-//        dd($filters);
-        if($filters['search'] ?? false){
-            $query
-                ->where('title', 'like', '%'.request('search').'%')
-                ->orWhere('description', 'like', '%'.request('search').'%');
+    public function scopeFilter($query, array $filters): void
+    {
+        if ($filters['search'] ?? false) {
+            $query->where(function ($q) use ($filters) {
+                $q->where('title', 'like', '%' . $filters['search'] . '%')
+                    ->orWhere('description', 'like', '%' . $filters['search'] . '%');
+            });
+        }
+
+        if ($filters['user_id'] ?? false) {
+            $query->where('user_id', $filters['user_id']);
         }
     }
+
 }

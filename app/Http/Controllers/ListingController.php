@@ -19,7 +19,7 @@ class ListingController extends Controller
 //        dd($request);
         $listings = Listing::with('user')
 //            ->where('title', 'like', '%'.$request->search.'%')
-            ->filter(request(['search']))
+            ->filter(request(['search', 'user_id']))
             ->latest()
             ->paginate(6)
             ->withQueryString();
