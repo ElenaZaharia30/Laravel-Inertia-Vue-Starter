@@ -39,6 +39,11 @@ const show = ref(false);
                         <div v-show="show"
                             class="absolute z-50 top-14 right-0 text-center bg-slate-800 text-white rounded-lg border-slate-100 border overflow-hidden w-40">
                             <Link
+                                :href="route('listing.create')"
+                                class="cursor-pointer block w-full px-6 py-3 hover:bg-slate-700">
+                                Listing
+                            </Link>
+                            <Link
                                 :href="route('profile.edit')"
                                 class="cursor-pointer block w-full px-6 py-3 hover:bg-slate-700">
                                 Profile
