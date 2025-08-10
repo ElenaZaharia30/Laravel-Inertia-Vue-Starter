@@ -1,11 +1,13 @@
 <script setup>
 import {switchTheme} from "../theme.js";
 import NavLink from "../Components/NavLink.vue";
-import {router, usePage} from "@inertiajs/vue3";
+import {Link, router, usePage} from "@inertiajs/vue3";
 import {computed, ref} from "vue";
 
+
 const page = usePage();
-const user = computed(() => {
+const user = computed(() => page.props.auth.user ?? '');
+const userName = computed(() => {
     const name = page.props.auth.user?.name ?? '';
     return name
         .split(' ')
@@ -27,13 +29,24 @@ const show = ref(false);
                     <NavLink routeName="login" componentName="Auth/Login">Login</NavLink>
                     <NavLink routeName="register" componentName="Auth/Register">Register</NavLink>
                 </div>
+                <Link
+                    v-if="user.role === 'admin'"
+                    :href="route('admin.index')"
+                    class="hover:bg-slate-700 hover:cursor-pointer w-6 h-6
+                    grid place-items-center rounded-full hover:outline">
+                    <i class="fa-solid fa-lock">
+
+                    </i>
+                </Link>
 
                 <div v-if="user" class="relative">
                     <div @click="show = !show"
                          class="flex items-center gap-2 px-3 py-1 rounded-lg hover:bg-slate-700 cursor-pointer"
                          :class="{'bg-slate-700' : show}"
                     >
-                        <p>{{user}}</p>
+                        <p>{{userName}}</p>
+
+
                         <i class="fa-solid fa-angle-down" ></i>
                         <!-----User Dropdown Menu------->
                         <div v-show="show"
@@ -69,7 +82,12 @@ const show = ref(false);
 
                 <button
                     @click="switchTheme"
-                    class="hover:bg-slate-700 hover:cursor-pointer w-6 h-6 grid place-items-center rounded-full hover:outline outline-1 outline-white"><i class="fa-solid fa-circle-half-stroke"></i>
+                    class="hover:bg-slate-700 hover:cursor-pointer w-6 h-6
+                    grid place-items-center rounded-full hover:outline outline-1
+                    outline-white">
+                    <i class="fa-solid fa-circle-half-stroke">
+
+                    </i>
                 </button>
             </div>
         </nav>

@@ -8,20 +8,14 @@ use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        return false;
-    }
 
     /**
-     * Determine whether the user can view the model.
+     * prevent going to a link of a suspended user // ?User $user can be null so that
+     * users that are not logged in can see the detailed listing, policies always expect a User
      */
-    public function view(User $user, Listing $listing): bool
+    public function view(?User $user, Listing $listing): bool
     {
-        return false;
+        return $listing->user->role !== 'suspended' && $listing->approved;
     }
 
     /**
@@ -29,7 +23,7 @@ class ListingPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role !== 'suspended';
     }
 
     /**
@@ -56,11 +50,9 @@ class ListingPolicy
         return false;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Listing $listing): bool
+
+    public function modify(User $user, Listing $listing): bool
     {
-        return false;
+        return $user->role !== 'suspended' && $user->id === $listing->user_id;
     }
 }
